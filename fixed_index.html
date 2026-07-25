@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🤍</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Arial,sans-serif}
+#msg{
+position:fixed;left:50%;top:50%;
+transform:translate(-50%,-50%);
+width:90%;text-align:center;
+color:white;font-size:2.1rem;font-weight:bold;
+line-height:1.5;z-index:10;opacity:1;
+text-shadow:0 0 15px #fff;
+}
+.show{opacity:1}
+.heart{
+position:fixed;
+top:-30px;
+color:#ff5c8a;
+z-index:1;
+animation:fall linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(110vh);}
+}
+small{font-size:1rem;color:#ddd}
+</style>
+</head>
+<body>
+
+<div id="msg"></div>
+
+<script>
+const pages=[
+"Merhabalar Dünyalar Güzelim... 🤍",
+"Bu sadece küçük bir sayfa değil...<br><br>Kalbimin sana bıraktığı minicik bir not. ❤️",
+"SENİ ÇOK ÖZLEDİM...",
+"Her geçen gün...<br><br>Seni daha çok özledim,<br>daha çok sevdim. ❤️",
+"Seni her gün daha fazla seviyorum. 🤍",
+"Bir şey eksik...",
+"O da sensin. ❤️<br><br><small>İyi ki varsın...</small>"
+];
+const times=[2500,3500,3000,3500,3000,2000,999999];
+let i=0;
+const msg=document.getElementById("msg");
+
+function next(){
+ msg.classList.remove("show");
+ setTimeout(()=>{
+   msg.innerHTML=pages[i];
+   msg.classList.add("show");
+   setTimeout(()=>{
+     i++;
+     if(i<pages.length) next();
+   },times[i]);
+ },600);
+}
+next();
+
+setInterval(()=>{
+ const h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=(14+Math.random()*20)+"px";
+ h.style.animationDuration=(5+Math.random()*5)+"s";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),10000);
+},300);
+</script>
+
+</body>
+</html>
